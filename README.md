@@ -1,4 +1,4 @@
-## Laboratory work from the Advanced R Programming course at Linköping University
+## Laboratory work for the Advanced Programming in R (732A94) course of my master's program.
 
 ### Lab 1: Base R data structures
 - Vectors, matrics, lists, dataframes
