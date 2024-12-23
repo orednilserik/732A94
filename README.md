@@ -28,3 +28,10 @@
   - Parallelized brute force search
   - roxygen2 documentation
 - Profile and improve existing API package
+
+### Bonus: Introduction to machine learning in R
+- Improve previous package
+- Ridge regression
+    - OLS, QR decomposition, implement methods
+    - Write a test suite, handle large dataset in dplyr
+- Predictive modeling
