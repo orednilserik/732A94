@@ -1,0 +1,73 @@
+---
+title: "BaDaAn-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BaDaAn-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+devtools::load_all()
+```
+
+# Introduction
+
+This package is used to help people interested in data analysis to get a basic understanding of how it could work. The package is composed of data from Swedens four biggest municipalities; Stockholm, Uppsala, Malmö, and Göteborg. This data is collected via the Kolada API. The data analysis is a stepwise journey for the user to follow along and try to draw their own conclusions regarding what the data says. The stepwise journey starts out as visualization of expenditure variables and how their magnitudes might relate to each other, followed by a correlation analysis, and lastly creating a linear model of chosen variables.
+
+```{r, echo = FALSE}
+library(BaDaAn)
+
+```
+
+Loading the library creates the 5 objects belonging to it. These are the following.
+
+### data_dl()
+
+```{r}
+df <- data_dl()
+head(df, n = 5)
+unique(df$kpi)
+```
+
+Loads the data from the Kolada API. This is data spanning from 2013 to 2022 regarding the municipal spend per resident for 9 different categories for the 4 municipalities, as well as two other variables that are net migration and total amount of residents the municipality has.
+
+### muniCompare
+
+```{r, fig.width = 7}
+munis <- c(unique(df$municipality))
+muniCompare(muni_vec = munis, df = df, var = "infrastructure_spend")
+```
+
+The muniCompare function produces a comparative line plot showing how the magnitudes in spend differ for the chosen expenditure variable for the chosen municipalities. Only one variable can be analyzed at a time but you can choose to compare any combination of the defined municipalities. This can show interesting behaviors between municipalities focus on certain spends and what that might entail.
+
+### muniLines
+
+```{r, fig.width = 7}
+muniLines(muni = "stockholm", df = df[df$kpi != "care_spend",])
+```
+
+muniLines produces a line plot for a chosen municipality, and shows any chosen combination of expenditure variables. In the example above, the expenditure on care has been removed. This can provide interesting insights regarding on how municipalities differ in their spending philosophies, which could further broader domain knowledge for the future modelling.
+
+
+### muniCorr
+
+```{r, fig.width = 7}
+muniCorr(df = df)
+```
+muniCorr produces a correlation analysis, both in tabular form and as a scatterplot. Here, the user is able to analyze if there seem to be high correlations between independent variables and apply their knowledge to try and do simple variable selection.
+
+
+### muniModel
+
+```{r, fig.width = 7}
+muniModel(y = "net_migration", form = c("political_spend", "culture_spend", "education_spend"), df = df)
+```
+The muniModel function is the final step in the basic data analysis journey for the user. The model takes a response variable, that is either the net_migrations or the residents variable, and a set of independent variables as a vector from the data frame that is loaded. The model can handle any combinations of the independent variables. After supplying the model, a model summary is printed with the descriptive residual statistics, parameter coefficients with standard error, t-value & p-value, as well as the models residuals standdard error amongst other diagnostic values. On top of this, a distribution plot is shown for the model residuals. Here, the user can analyze whether it seems to be a proper model, and the user is prompted to consider if there are any other - wink - considerations to be made for the model to actually be properly fitted.

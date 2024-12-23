@@ -1,0 +1,21 @@
+Package: Package.labb3
+Type: Package
+Title: Euclidian and dijkstra algorithms
+Version: 1.0.0
+Date: 2023-09-11
+Authors@R: c(
+	person(given ="Johannes",family="Hedström",email = "johed883@student.liu.se",role = c("aut", "cre")),
+	person(given="Mikael",family="Montén",email = "mikmo937@student.liu.se",role = c("aut")))
+Description: The package has 2 functions, one is an algorithm that calculates the greatest common divider(euclidan algorithm) for two scalars x and y.
+	The other function does a dijkstra algorithm to calculate the shortest distance between a start node and every other node in a given graph. 
+	This function takes a data frame with 3 columns named 'v1','v2' and 'w' and a start node(init_node) and returns a vector with the distances. 
+Encoding: UTF-8
+URL: https://github.com/Johhed15/Advanced_R 
+Depends: R (>= 3.5.0)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+License: MIT + file LICENSE

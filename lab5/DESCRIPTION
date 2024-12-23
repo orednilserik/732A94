@@ -1,0 +1,21 @@
+Package: BaDaAn
+Type: Package
+Title: Basic data analysis for municipality data from Kolada
+Version: 1.0.0
+Date: 2023-09-29
+Author: Who wrote it
+Authors@R: c(
+	person(given ="Johannes",family="Hedström",email = "johed883@student.liu.se",role = c("aut", "cre")),
+	person(given="Mikael",family="Montén",email = "mikmo937@student.liu.se",role = c("aut")))
+Description: This package serves as an introduction to basic data analysis. Data is based on an API from Kolada involving data over municipal spend for year 2013-2022 in Swedens four largest municipalities - Stockholm, Göteborg, Malmö, and Uppsala. The analysis starts with visualizing how the expenditure magnitudes have changed over time by providing the user with two forms of line plots. One line plot shows all spend variables for one municipality, and one line plot compares municipalities for a chosen variable. The package also provides a function to analyze correlations between variables both by a table and a scatter plot. The final functionality is the ability to create a linear model from chosen variables and return a summary printout as well as distribution plot of the model.
+Encoding: UTF-8
+URL: https://github.com/wountoto/Lab5_AdvR
+Imports:
+	ggplot2, httr, tidyr, stringr, jsonlite, graphics
+Depends: R (>= 3.5.0)
+RoxygenNote: 7.2.3
+License: MIT + file LICENSE
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
